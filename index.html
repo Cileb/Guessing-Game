@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Guessing Game</title>
-    <link rel="stylesheet" href="main.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script src="js/guessing-game-copy.js" defer></script>
     <!-- the MAIN.CSS file is linked here -->
   </head>
 
   <body>
+    <div class="app">
+      <header>
+        <h1 id="title">MY GUESSING GAME</h1>
+        <div class="current-status">
+          <p id="current-status">Guess a number between 1-100</p>
+        </div>
+      </header>
+      <main>
+        <div class="input-buttons">
+          <input
+            id="guess-box"
+            name="guess-box"
+            placeholder="enter guess here"
+            maxlength="3"
+          />
+        </div>
+        <div class="guesses">
+          <ul>
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+          </ul>
+        </div>
 
-
-
-
-
+        <div class="input-buttons">
+          <button type="submit" id="guess-button" name="submit-guess">
+            SUBMIT GUESS
+          </button>
+          <button type="submit" id="play-again" name="play-again">
+            PLAY AGAIN?
+          </button>
+          <button type="submit" id="hint" name="hint">HINT</button>
+        </div>
+      </main>
+    </div>
     <!-- <script src='js/guessing-game.js'></script> -->
     <!-- uncomment the script tag above when you are ready to add JavaScript to your document -->
   </body>
-
 </html>
