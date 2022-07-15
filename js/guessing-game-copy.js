@@ -20,6 +20,8 @@ function newGame() {
   }
   submitGuess.disabled = false;
   hintButton.disabled = false;
+  guessBox.focus();
+  guessBox.select();
 }
 function playersGuessSubmission(number) {
   if (number < 1 || number > 100 || typeof number !== "number") return false;
@@ -48,11 +50,13 @@ function checkGuess(number) {
     guess[game.attempts].textContent = number;
     pastGuesses.push(number);
     game.attempts += 1;
+    guessBox.value = null;
   } else if (isHigher(number)) {
     currentStatus.textContent = "Guess Lower!";
     guess[game.attempts].textContent = number;
     pastGuesses.push(number);
     game.attempts += 1;
+    guessBox.value = null;
   } else return false;
   if (playersGuess) {
     let difference = Math.abs(playersGuess - game.winningNumber);
@@ -86,6 +90,9 @@ const currentStatus = document.getElementById("current-status");
 const guess = document.querySelectorAll(".guess");
 const guessBox = document.getElementById("guess-box");
 const audio = new Audio("audio/grunt-birthday-party.mp3");
+const audio2 = new Audio("audio/the-price-is-right-losing-horn.mp3");
+guessBox.focus();
+guessBox.select();
 
 let game = {
   attempts: 0,
@@ -114,6 +121,29 @@ submitGuess.addEventListener("click", function () {
     hintButton.disabled = true;
     titleText.textContent = `You Lose!`;
     currentStatus.textContent = `Game Over - Try Again! The Winning Number was: ${game.winningNumber}`;
+    audio2.play();
+  }
+});
+
+document.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    if (submitGuess.disabled) {
+      newGame();
+    } else if (!submitGuess.disabled) {
+      playersGuess = playersGuessSubmission(Number(guessBox.value));
+      if (!playersGuess) {
+        currentStatus.textContent = "That is an invalid guess.";
+      } else {
+        checkGuess(playersGuess);
+      }
+      if (game.attempts >= 5) {
+        submitGuess.disabled = true;
+        hintButton.disabled = true;
+        titleText.textContent = `You Lose!`;
+        currentStatus.textContent = `Game Over - Try Again! The Winning Number was: ${game.winningNumber}`;
+        audio2.play();
+      }
+    }
   }
 });
 
