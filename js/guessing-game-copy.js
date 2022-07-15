@@ -1,11 +1,11 @@
 function generateWinningNumber() {
   return Math.floor(Math.random() * 100) + 1;
 }
-function shuffle(arr) {
-  arr.sort(function (a, b) {
+function shuffle(hint) {
+  hint.sort(function (a, b) {
     return 0.5 - Math.random();
   });
-  return arr;
+  return hint;
 }
 function newGame() {
   playersGuess = null;
