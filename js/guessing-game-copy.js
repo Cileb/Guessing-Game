@@ -40,6 +40,7 @@ function checkGuess(number) {
     titleText.textContent = "You Win!";
     currentStatus.textContent = "Congratulations!";
     guess[game.attempts].textContent = number;
+    audio.play();
     submitGuess.disabled = true;
     hintButton.disabled = true;
   } else if (isLower(number)) {
@@ -83,7 +84,8 @@ const playAgain = document.getElementById("play-again");
 const submitGuess = document.getElementById("guess-button");
 const currentStatus = document.getElementById("current-status");
 const guess = document.querySelectorAll(".guess");
-const guessBox = document.getElementById("guess-box").value;
+const guessBox = document.getElementById("guess-box");
+const audio = new Audio("audio/grunt-birthday-party.mp3");
 
 let game = {
   attempts: 0,
@@ -101,10 +103,7 @@ playAgain.addEventListener("click", function () {
 });
 
 submitGuess.addEventListener("click", function () {
-  playersGuess = playersGuessSubmission(
-    Number(document.getElementById("guess-box").value)
-  );
-
+  playersGuess = playersGuessSubmission(Number(guessBox.value));
   if (!playersGuess) {
     currentStatus.textContent = "That is an invalid guess.";
   } else {
@@ -133,3 +132,4 @@ submitGuess.addEventListener("click", function () {
 //   attempts += 1;
 // }
 // Number(document.getElementById("guess-box").value)
+// change text color based on Warming Up or Cooling Off (red v blue)
