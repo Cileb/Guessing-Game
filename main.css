@@ -43,6 +43,10 @@ body {
   text-shadow: 3px 4px 7px rgba(0, 0, 0, 0.2);
 }
 
+button:disabled {
+  opacity: 0.5;
+}
+
 #title {
   font-weight: bold;
   line-height: 2rem;

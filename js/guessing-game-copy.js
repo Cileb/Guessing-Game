@@ -50,13 +50,14 @@ function checkGuess(number) {
     guess[game.attempts].textContent = number;
     pastGuesses.push(number);
     game.attempts += 1;
-
+    hintButton.disabled = false;
     guessBox.value = null;
   } else if (isHigher(number)) {
     currentStatus.textContent = "Guess Lower!";
     guess[game.attempts].textContent = number;
     pastGuesses.push(number);
     game.attempts += 1;
+    hintButton.disabled = false;
     guessBox.value = null;
   } else return false;
   if (playersGuess) {
@@ -117,7 +118,6 @@ submitGuess.addEventListener("click", function () {
     currentStatus.textContent = "That is an invalid guess.";
   } else {
     checkGuess(playersGuess);
-    hintButton.disabled = false;
   }
   if (game.attempts >= 5) {
     submitGuess.disabled = true;
