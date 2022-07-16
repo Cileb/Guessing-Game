@@ -50,6 +50,7 @@ function checkGuess(number) {
     guess[game.attempts].textContent = number;
     pastGuesses.push(number);
     game.attempts += 1;
+
     guessBox.value = null;
   } else if (isHigher(number)) {
     currentStatus.textContent = "Guess Lower!";
@@ -80,6 +81,7 @@ function provideHint() {
     generateWinningNumber(),
   ]);
   titleText.textContent = `The winning number is either ${hint[0]}, ${hint[1]}, or ${hint[2]}.`;
+  hintButton.disabled = true;
 }
 
 const hintButton = document.getElementById("hint");
@@ -115,6 +117,7 @@ submitGuess.addEventListener("click", function () {
     currentStatus.textContent = "That is an invalid guess.";
   } else {
     checkGuess(playersGuess);
+    hintButton.disabled = false;
   }
   if (game.attempts >= 5) {
     submitGuess.disabled = true;
